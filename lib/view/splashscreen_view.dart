@@ -21,6 +21,10 @@ class _SplashScreenViewState extends State<SplashScreenView>
   @override
   void initState() {
     _fadeController.forward();
+     Timer(
+        Duration(seconds: 3),
+        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => HomePageView())));
     super.initState();
   }
 
@@ -32,11 +36,6 @@ class _SplashScreenViewState extends State<SplashScreenView>
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-        Duration(seconds: 3),
-            () =>
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => HomePageView())));
     return Scaffold(
       backgroundColor: Colors.amber,
       body: SafeArea(

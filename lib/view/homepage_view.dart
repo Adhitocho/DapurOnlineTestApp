@@ -7,39 +7,39 @@ class HomePageView extends StatefulWidget {
   _HomePageViewState createState() => _HomePageViewState();
 }
 
-final CarouselController _controller = CarouselController();
-
-final List<Widget> highlights = [
-  Container(
-    width: 350,
-    height: 157,
-    color: Colors.yellow,
-    child: Image.asset(
-      'assets/nasikebuli.jpg',
-      fit: BoxFit.fill,
-    ),
-  ),
-  Container(
-    width: 350,
-    height: 157,
-    color: Colors.yellow,
-    child: Image.asset(
-      'assets/pisangijo.jpg',
-      fit: BoxFit.fill,
-    ),
-  ),
-  Container(
-    width: 350,
-    height: 157,
-    color: Colors.yellow,
-    child: Image.asset(
-      'assets/getuklindri.jpg',
-      fit: BoxFit.fill,
-    ),
-  ),
-]; // Gambar2 untuk highlights
-
 class _HomePageViewState extends State<HomePageView> {
+  final CarouselController _controller = CarouselController();
+
+  final List<Widget> highlights = [
+    Container(
+      width: 350,
+      height: 157,
+      color: Colors.yellow,
+      child: Image.asset(
+        'assets/nasikebuli.jpg',
+        fit: BoxFit.fill,
+      ),
+    ),
+    Container(
+      width: 350,
+      height: 157,
+      color: Colors.yellow,
+      child: Image.asset(
+        'assets/pisangijo.jpg',
+        fit: BoxFit.fill,
+      ),
+    ),
+    Container(
+      width: 350,
+      height: 157,
+      color: Colors.yellow,
+      child: Image.asset(
+        'assets/getuklindri.jpg',
+        fit: BoxFit.fill,
+      ),
+    ),
+  ]; // Gambar2 untuk highlights
+
   int _selectedIndex = 0;
   int _counter = 0;
 
@@ -50,9 +50,11 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   _decrementCounter() {
-    setState(() {
+    if (_counter != 0) {
+      setState(() {
       _counter--;
     });
+    }
   }
 
   void _onItemTapped(int index) {
@@ -76,8 +78,8 @@ class _HomePageViewState extends State<HomePageView> {
                   fillColor: Color(0xffD0D0D0),
                   filled: true,
                   prefixIcon: Icon(Icons.youtube_searched_for),
-                  border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40)),
                   labelText: 'Search'),
             ),
           ), // Search Bar
@@ -104,8 +106,8 @@ class _HomePageViewState extends State<HomePageView> {
                   Container(
                     width: 350,
                     alignment: Alignment.centerLeft,
-                    child:
-                    Text('Kategori', textAlign: TextAlign.left, style: menu),
+                    child: Text('Kategori',
+                        textAlign: TextAlign.left, style: menu),
                   ), // Teks Kategori
                   Column(
                     children: [
@@ -136,7 +138,7 @@ class _HomePageViewState extends State<HomePageView> {
                             ), // Main Course
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 30.0),
+                                  const EdgeInsets.symmetric(horizontal: 30.0),
                               child: Container(
                                 child: Column(
                                   children: [
@@ -167,7 +169,8 @@ class _HomePageViewState extends State<HomePageView> {
                                     height: 90,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: AssetImage('assets/drink.png')),
+                                          image:
+                                              AssetImage('assets/drink.png')),
                                       border: Border.all(color: Colors.amber),
                                       borderRadius: BorderRadius.circular(50),
                                     ),
@@ -196,7 +199,7 @@ class _HomePageViewState extends State<HomePageView> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image:
-                                          AssetImage('assets/cookies.png')),
+                                              AssetImage('assets/cookies.png')),
                                       border: Border.all(color: Colors.amber),
                                       borderRadius: BorderRadius.circular(50),
                                     ),
@@ -210,7 +213,7 @@ class _HomePageViewState extends State<HomePageView> {
                             ), // Snacks
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 30.0),
+                                  const EdgeInsets.symmetric(horizontal: 30.0),
                               child: Container(
                                 child: Column(
                                   children: [
@@ -220,7 +223,7 @@ class _HomePageViewState extends State<HomePageView> {
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image:
-                                            AssetImage('assets/bread.png')),
+                                                AssetImage('assets/bread.png')),
                                         border: Border.all(color: Colors.amber),
                                         borderRadius: BorderRadius.circular(50),
                                       ),
@@ -241,7 +244,8 @@ class _HomePageViewState extends State<HomePageView> {
                                     height: 90,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: AssetImage('assets/satay.png')),
+                                          image:
+                                              AssetImage('assets/satay.png')),
                                       border: Border.all(color: Colors.amber),
                                       borderRadius: BorderRadius.circular(50),
                                     ),
@@ -283,10 +287,11 @@ class _HomePageViewState extends State<HomePageView> {
                 Expanded(
                   flex: 1,
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 50,
-                        height: 50,
+                        width: 100,
+                        height: 100,
                         alignment: Alignment.centerLeft,
                         decoration: BoxDecoration(
                             image: DecorationImage(
@@ -303,28 +308,38 @@ class _HomePageViewState extends State<HomePageView> {
                                 'Nasi Kebuli Kasihan',
                                 style: subMenu,
                               ),
+                              SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Qty:',
-                                      textAlign: TextAlign.left, style: subMenu),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: Container(
-                                      width: 70,
-                                      height: 30,
-                                      child: Row(
-                                        children: [
-                                          FloatingActionButton(
-                                              onPressed: _incrementCounter,
-                                              child: Icon(Icons.add)), // tambah
-                                          Text('$_counter', style: subMenu),
-                                          FloatingActionButton(
-                                              onPressed: _decrementCounter,
-                                              child:
-                                              Icon(Icons.remove)), // kurang
-                                        ],
-                                      ),
+                                  Text('Qty:  ',
+                                      textAlign: TextAlign.left,
+                                      style: subMenu),
+                                  Container(
+                                     padding: const EdgeInsets.only(left: 10.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all()
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        IconButton(
+                                            onPressed: _incrementCounter,
+                                            icon: Icon(Icons.add)), // tambah
+                                        Container(
+                                          padding: const EdgeInsets.all(3),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all()
+                                          ),
+                                          child: Text('$_counter', style: subMenu)),
+                                        IconButton(
+                                            onPressed: _decrementCounter,
+                                            icon:
+                                                Icon(Icons.remove)), // kurang
+                                      ],
                                     ),
                                   )
                                 ],
@@ -385,7 +400,7 @@ class _HomePageViewState extends State<HomePageView> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+        onTap: (_index) => _onItemTapped(_index),
       ),
     );
   }
