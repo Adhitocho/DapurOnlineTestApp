@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dapuronline_user/view/homepage_view.dart';
+import 'package:dapuronline_user/view/loginpage_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenView extends StatefulWidget {
@@ -36,7 +36,7 @@ class _SplashScreenViewState extends State<SplashScreenView>
         Duration(seconds: 3),
             () =>
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => HomePageView())));
+                builder: (BuildContext context) => LoginPageView())));
     return Scaffold(
       backgroundColor: Colors.amber,
       body: SafeArea(
