@@ -8,98 +8,103 @@ class LoginPageView extends StatefulWidget {
 }
 
 class _LoginPageViewState extends State<LoginPageView> {
-  final _usernameKey = GlobalKey<FormState>();
-  final _passwordKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Login',
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-                ), // Login
-                SizedBox(height: 15),
-                Form(
-                    key: _usernameKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Username',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Harus diisi';
+          child: SingleChildScrollView(
+            child: SizedBox(
+              // Mediaquery untuk mengetahui besar size screen
+              height: MediaQuery.of(context).size.height,
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Login',
+                        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 15), // Username Form
+                      SizedBox(height: 15),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            label: Text('Username'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Harus diisi';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 30),
+                      TextFormField(
+                        obscureText: _isObscure,
+                        decoration: InputDecoration(
+                            //  Disini ada toggle visibility
+                            suffixIcon: IconButton(
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
+                            ),
+                            label: Text('Password'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Harus diisi';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      TextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_context) => HomePageView()));
                             }
-                            return null;
                           },
-                        ),
-                      ],
-                    )), // Username Form
-                SizedBox(height: 15),
-                Form(
-                    key: _passwordKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Password',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        TextFormField(
-                          obscureText: true,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Harus diisi';
-                            }
-                            return null;
-                          },
-                        ),
-                      ],
-                    )), // Password Form
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
-          TextButton(
-              onPressed: () {
-                if (_usernameKey.currentState!.validate() &&
-                    _passwordKey.currentState!.validate()) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_context) => HomePageView()));
-                }
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 150,
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  border: Border.all(color: Colors.yellow),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Text(
-                  'Login',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: Colors.amber,
+                              border: Border.all(color: Colors.yellow),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Text(
+                              'Login',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                          )),
+                    ],
                   ),
                 ),
-              )),
-        ],
-      )),
+              ),
+            ),
+          )),
     );
   }
 }
