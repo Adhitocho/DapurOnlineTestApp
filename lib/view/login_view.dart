@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dapuronline_user/view/homepage_view.dart';
+import 'package:dapuronline_user/view/home_page/home_view.dart';
 
 class LoginPageView extends StatefulWidget {
   @override

@@ -1,3 +1,4 @@
+import 'package:dapuronline_user/helpers/styles.dart';
 import 'package:flutter/material.dart';
 
 class WidgetsPage extends StatelessWidget {
@@ -8,12 +9,6 @@ class WidgetsPage extends StatelessWidget {
     );
   }
 }
-
-final TextStyle menu =
-    TextStyle(fontFamily: 'Roboto', fontSize: 25, color: Colors.black);
-
-final TextStyle subMenu =
-    TextStyle(fontFamily: 'Roboto', fontSize: 17, color: Colors.black);
 
 class WidgetsPageSFul extends StatefulWidget {
   const WidgetsPageSFul({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dapuronline_user/view/loginpage_view.dart';
+import 'package:dapuronline_user/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenView extends StatefulWidget {
@@ -8,7 +8,7 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
 
   late final AnimationController _fadeController = AnimationController(
     duration: Duration(milliseconds: 800),
