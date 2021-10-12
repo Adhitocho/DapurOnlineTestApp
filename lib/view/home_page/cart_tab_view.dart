@@ -20,7 +20,9 @@ class _CartTabViewState extends State<CartTabView> {
 
   _decrementCounter() {
     setState(() {
-      _counter--;
+      if(_counter > 0) {
+        _counter--;
+      }
     });
   }
 
