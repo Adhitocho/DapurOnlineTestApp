@@ -9,18 +9,25 @@ class SplashScreenView extends StatefulWidget {
 
 class _SplashScreenViewState extends State<SplashScreenView>
     with TickerProviderStateMixin {
+
   late final AnimationController _fadeController = AnimationController(
     duration: Duration(milliseconds: 800),
     vsync: this,
   );
-  late final Animation<double> _fadeanimation = CurvedAnimation(
+  late final Animation<double> _fadeAnimation = CurvedAnimation(
     parent: _fadeController,
     curve: Curves.easeIn,
   );
 
   @override
   void initState() {
-    _fadeController.forward();
+    _fadeController.forward().then((value) {
+      // Janngan taro sesuatu yg bukan tampilan didalm build, pindahkan ke init jika memang harus di trigger saat pertama kali screen dirender
+      Timer(Duration(seconds: 2), () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => LoginPageView()));
+      });
+    });
     super.initState();
   }
 
@@ -32,17 +39,12 @@ class _SplashScreenViewState extends State<SplashScreenView>
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-        Duration(seconds: 3),
-            () =>
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => LoginPageView())));
     return Scaffold(
       backgroundColor: Colors.amber,
       body: SafeArea(
         child: Center(
           child: FadeTransition(
-            opacity: _fadeanimation,
+            opacity: _fadeAnimation,
             child: Container(
               width: 300,
               height: 230,
